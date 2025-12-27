@@ -27,7 +27,7 @@
             <a href="events.php">Events</a>
             <a href="about.php" class="active">About</a>
             <a href="contact.php">Contact</a>
-            <a href="login.php">Login</a>
+            <a href="auth/login.php">Login</a>
         </div>
 
         <div class="menu-btn" onclick="toggleMenu()">☰</div>
@@ -46,7 +46,6 @@
     <section class="about-section">
         <div class="about-container">
 
-            <h1>About Planify</h1>
             <!-- UNIQUE ABOUT CENTER -->
 <section class="about-center">
   <div class="about-card">

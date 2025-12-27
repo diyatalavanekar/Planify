@@ -20,16 +20,6 @@
 
     <?php include("includes/header.php"); ?>
 
-        <div class="nav-links">
-            <a href="home.php">Home</a>
-            <a href="#events">Events</a>
-            <a href="about.php">About</a>
-            <a href="#contact">Contact</a>
-            <a href="login.php">Login</a>
-        </div>
-
-        <div class="menu-btn" onclick="toggleMenu()">☰</div>
-    </div>
 
     <!-- SIDE NAVIGATION -->
     <div class="side-nav" id="sideNav">

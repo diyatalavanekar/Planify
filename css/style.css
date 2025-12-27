@@ -9,6 +9,7 @@
 body {
     background: #f4f6fb;   /* Soft neutral background */
     color: #333;
+    padding-top: 70px;
 }
 
 /* ================= BRAND COLOR ================= */
@@ -104,7 +105,6 @@ body {
 
 /* ================= HERO ================= */
 .hero {
-    margin-top: 70px;
     height: 85vh;
     display: flex;
     align-items: center;
@@ -146,7 +146,7 @@ body {
 .hero-video {
     position: relative;
     width: 100%;
-    height: 85vh;
+    min-height: calc(100vh - 70px);
     overflow: hidden;
     background: #000; /* fallback only */
 }
@@ -281,5 +281,177 @@ body {
 
     .footer {
         padding: 40px 30px 20px;
+    }
+}
+
+/* =========================
+   AUTH PAGES (LOGIN / REGISTER)
+   ========================= */
+
+.auth-body {
+    background-color: #ffffff;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.auth-box {
+    background: #ffffff;
+    padding: 35px 40px;
+    width: 360px;
+    border-radius: 10px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.auth-box h2 {
+    color: rgb(48,47,81);
+    margin-bottom: 5px;
+}
+
+.auth-subtext {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: rgb(48,47,81);
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: rgb(48,47,81);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.auth-btn:hover {
+    opacity: 0.9;
+}
+
+.auth-footer {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+.auth-footer a {
+    color: rgb(48,47,81);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* ================= ABOUT PAGE ================= */
+
+.about-section {
+    padding: 60px 20px;
+    background: #f4f6fb;
+}
+
+.about-container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.about-center {
+    display: flex;
+    justify-content: center;
+}
+
+.about-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 14px;
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.about-card h1 {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 10px;
+    color: #2c2c2c;
+}
+
+.tagline {
+    text-align: center;
+    color: #666;
+    margin-bottom: 40px;
+    font-size: 16px;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 25px;
+}
+
+.info-box {
+    background: #f9f9f9;
+    padding: 25px;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 20px rgba(0,0,0,0.08);
+}
+
+.info-box h3 {
+    margin-bottom: 12px;
+    font-size: 18px;
+    color: #4a4a4a;
+}
+
+.info-box p,
+.info-box li {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.6;
+}
+
+.info-box ul {
+    padding-left: 18px;
+}
+
+.info-box span {
+    font-size: 13px;
+    color: #777;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+    .about-card {
+        padding: 25px;
+    }
+
+    .about-card h1 {
+        font-size: 26px;
     }
 }
