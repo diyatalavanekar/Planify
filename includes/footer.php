@@ -17,7 +17,7 @@
             <ul>
                 <li><a href="/planify/contact.php">Contact Us</a></li>
                 <li><a href="/planify/payment.php">Payment</a></li>
-                <li><a href="/planify/ratings.php">Ratings</a></li>
+                <li><a href="/planify/ratings.php">Feedback</a></li>
                 <li><a href="/planify/about.php">About Us</a></li>
             </ul>
         </div>

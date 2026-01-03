@@ -239,14 +239,33 @@ body {
 }
 
 .footer-section ul li a {
+    position: relative;          /* REQUIRED */
+    display: inline-block;       /* IMPORTANT */
     color: #ffffff;
     text-decoration: none;
     font-size: 14px;
-    transition: 0.3s;
+    padding-bottom: 4px;
 }
 
-.footer-section ul li a:hover {
-    opacity: 0.7;
+
+.footer-section ul li a {
+    position: relative; /* REQUIRED for ::after */
+}
+
+/* underline animation */
+.footer-section ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: #ffffff;
+    transition: width 0.3s ease;
+}
+
+.footer-section ul li a:hover::after {
+    width: 100%;
 }
 
 .footer-section p {
@@ -454,4 +473,100 @@ body {
     .about-card h1 {
         font-size: 26px;
     }
+}
+
+/* ================= EVENTS PAGE ================= */
+
+.events-section {
+    padding: 60px 20px;
+}
+
+.page-title {
+    text-align: center;
+    color: rgb(48,47,81);
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.page-subtitle {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #555;
+}
+
+.events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Event Card */
+.event-card {
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: transform 0.3s;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+}
+
+.event-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.event-content {
+    padding: 20px;
+}
+
+.event-content h3 {
+    color: rgb(48,47,81);
+    margin-bottom: 10px;
+}
+
+.event-desc {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.event-details {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.event-details li {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+/* Buttons */
+.event-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-primary {
+    background: rgb(48,47,81);
+    color: #fff;
+    padding: 8px 14px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn-outline {
+    border: 2px solid rgb(48,47,81);
+    color: rgb(48,47,81);
+    padding: 6px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.no-events {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
 }
