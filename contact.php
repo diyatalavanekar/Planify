@@ -1,7 +1,6 @@
 <?php
 include 'config/db.php';
 
-// Fetch contact info
 $query = "SELECT * FROM contact_info LIMIT 1";
 $result = mysqli_query($conn, $query);
 $contact = mysqli_fetch_assoc($result);
@@ -28,25 +27,30 @@ $contact = mysqli_fetch_assoc($result);
 
         <div class="contact-box">
 
-            <!-- STATIC FORM -->
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <textarea placeholder="Your Message" required></textarea>
-                <button disabled>Send Message</button>
-                <small>* Message feature coming soon</small>
-            </form>
+            <!-- LEFT: STATIC INFORMATION -->
+            <div class="contact-static">
+                <h3>Get in Touch</h3>
+                <p>
+                    If you have any questions regarding events, bookings, or
+                    platform usage, feel free to reach out using the contact
+                    details provided.
+                </p>
 
-            <!-- DYNAMIC CONTACT INFO -->
+                
+            </div>
+
+            <!-- RIGHT: DYNAMIC CONTACT INFO -->
             <div class="contact-info">
                 <h3>Official Contact</h3>
-                <p><strong>Email:</strong> <?= $contact['email']; ?></p>
-                <p><strong>Phone:</strong> <?= $contact['phone']; ?></p>
-                <p><strong>Address:</strong> <?= $contact['address']; ?></p>
+
+                <p><strong>Email:</strong> <?= htmlspecialchars($contact['email']); ?></p>
+                <p><strong>Phone:</strong> <?= htmlspecialchars($contact['phone']); ?></p>
+                <p><strong>Address:</strong> <?= htmlspecialchars($contact['address']); ?></p>
                 <p><strong>Owner:</strong> Rasika Prakshale</p>
             </div>
 
         </div>
+
     </div>
 </section>
 

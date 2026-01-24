@@ -586,8 +586,8 @@ body {
 
 .contact-container h1 {
     font-size: 34px;
-    margin-bottom: 10px;
     color: rgb(48,47,81);
+    margin-bottom: 10px;
 }
 
 .contact-tagline {
@@ -597,57 +597,30 @@ body {
 
 .contact-box {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 30px;
-    background: #fff;
-    padding: 35px;
-    border-radius: 14px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
 }
 
-.contact-form {
+/* LEFT STATIC SECTION */
+.contact-static {
     text-align: left;
 }
 
-.form-group {
-    margin-bottom: 18px;
+.contact-static h3 {
+    color: rgb(48,47,81);
+    margin-bottom: 10px;
 }
 
-.form-group label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: 6px;
+.contact-static p {
+    color: #555;
+    line-height: 1.6;
 }
 
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    outline: none;
-}
 
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: rgb(48,47,81);
-}
-
-.btn-submit {
-    background: rgb(48,47,81);
-    color: #fff;
-    border: none;
-    padding: 12px 30px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.btn-submit:hover {
-    opacity: 0.9;
-}
-
-/* CONTACT INFO */
+/* RIGHT DYNAMIC INFO */
 .contact-info {
     text-align: left;
     background: #f9f9f9;
@@ -656,13 +629,13 @@ body {
 }
 
 .contact-info h3 {
-    margin-bottom: 15px;
     color: rgb(48,47,81);
+    margin-bottom: 15px;
 }
 
 .contact-info p {
-    font-size: 14px;
     margin-bottom: 8px;
+    font-size: 15px;
 }
 
 /* RESPONSIVE */
@@ -670,27 +643,4 @@ body {
     .contact-box {
         grid-template-columns: 1fr;
     }
-}
-
-/* ================= ADMIN CONTACT UPDATE FORM ================= */
-.admin-form {
-    max-width: 500px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 30px;
-    border-radius: 12px;
-}
-
-.admin-form input,
-.admin-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-}
-
-.admin-form button {
-    background: rgb(48,47,81);
-    color: #fff;
-    border: none;
-    padding: 12px;
 }

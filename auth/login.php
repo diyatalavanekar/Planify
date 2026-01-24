@@ -1,6 +1,10 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
+if (isset($_GET['registered'])) {
+    echo "<p style='color:green;text-align:center;'>Registration successful! Please login.</p>";
+}
 ?>
 
 <!DOCTYPE html>
