@@ -38,4 +38,13 @@
     <div class="footer-bottom">
         <p>© 2025 Planify. All Rights Reserved.</p>
     </div>
+    <div class="footer-section admin-link">
+    <ul>
+        <li>
+            <a href="/Planify/admin/admin_login.php">Admin</a>
+        </li>
+    </ul>
+</div>
+
+
 </footer>

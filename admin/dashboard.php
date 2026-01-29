@@ -1,36 +1,85 @@
 <?php
-include '../config/db.php';
+session_start();
 
-// Fetch existing info
-$query = "SELECT * FROM contact_info LIMIT 1";
-$result = mysqli_query($conn, $query);
-$contact = mysqli_fetch_assoc($result);
+/* ================= CACHE PREVENTION ================= */
+header("Expires: Tue, 01 Jan 2000 00:00:00 GMT");
+header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT");
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Cache-Control: post-check=0, pre-check=0", false);
+header("Pragma: no-cache");
+
+/* ================= SESSION VALIDATION ================= */
+if (!isset($_SESSION['admin_id'])) {
+    header("Location: admin_login.php");
+    exit();
+}
 ?>
 
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Admin Dashboard | Contact Info</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <meta charset="UTF-8">
+    <title>Admin Dashboard | Planify</title>
+
+    <!-- Admin Dashboard CSS -->
+    <link rel="stylesheet" href="admin.css">
 </head>
-<body>
+    <script>
+    // Prevent back button access after logout
+        window.history.forward();
+        function noBack() {
+            window.history.forward();
+        }
+    </script>
 
-<h2 style="color:rgb(48,47,81); text-align:center;">Update Contact Information</h2>
+<body onload="noBack();" onpageshow="if (event.persisted) noBack();">
 
-<form action="update_contact.php" method="post" class="admin-form">
 
-    <label>Email</label>
-    <input type="email" name="email" value="<?= $contact['email']; ?>" required>
+<div class="dashboard-container">
 
-    <label>Phone</label>
-    <input type="text" name="phone" pattern="[0-9]{10}" value="<?= $contact['phone']; ?>" required>
+    <!-- ================= SIDEBAR ================= -->
+    <div class="sidebar">
+        <h2>Planify Admin</h2>
 
-    <label>Address</label>
-    <textarea name="address" required><?= $contact['address']; ?></textarea>
+        <a href="dashboard.php">Dashboard</a>
+        <a href="manage_users.php">Manage Users</a>
+        <a href="manage_bookings.php">Manage Bookings</a>
+        <a href="manage_contact.php">Contact Page Content</a>
+        <a href="settings.php">Settings</a>
 
-    <button type="submit">Update</button>
+        <a href="logout.php" class="logout-btn">Logout</a>
+    </div>
 
-</form>
+    <!-- ================= MAIN CONTENT ================= -->
+    <div class="main-content">
+        <h1>Welcome, Admin 👋</h1>
+        <p>Manage Planify from here</p>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Total Users</h3>
+                <p>View & manage registered users</p>
+            </div>
+
+            <div class="card">
+                <h3>Bookings</h3>
+                <p>View and manage bookings</p>
+            </div>
+
+            <div class="card">
+                <h3>Contact Page</h3>
+                <p>Edit contact information</p>
+            </div>
+
+            <div class="card">
+                <h3>Website Settings</h3>
+                <p>Update website content</p>
+            </div>
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>

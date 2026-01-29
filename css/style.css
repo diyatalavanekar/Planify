@@ -1,6 +1,6 @@
-/* ================= GLOBAL RESET ================= */
+            /* ================= GLOBAL RESET ================= */
 * {
-    margin: 0;
+
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
@@ -12,13 +12,13 @@ body {
     padding-top: 70px;
 }
 
-/* ================= BRAND COLOR ================= */
+            /* ================= BRAND COLOR ================= */
 :root {
     --brand: rgb(48,47,81);
     --brand-dark: rgb(38,37,65);
 }
 
-/* ================= NAVBAR ================= */
+            /* ================= NAVBAR ================= */
 .navbar {
     position: fixed;
     top: 0;
@@ -73,7 +73,7 @@ body {
     cursor: pointer;
 }
 
-/* ================= SIDE NAV ================= */
+            /* ================= SIDE NAV ================= */
 .side-nav {
     position: fixed;
     top: 0;
@@ -103,7 +103,7 @@ body {
     left: 0;
 }
 
-/* ================= HERO ================= */
+            /* ================= HERO ================= */
 .hero {
     height: 85vh;
     display: flex;
@@ -141,7 +141,7 @@ body {
     background: var(--brand-dark);
 }
 
-/* ===== HERO VIDEO  ===== */
+            /* ===== HERO VIDEO  ===== */
 
 .hero-video {
     position: relative;
@@ -197,7 +197,7 @@ body {
     color: #444;
 }
 
-/* ================= FOOTER ================= */
+            /* ================= FOOTER ================= */
 .footer {
     background: var(--brand);
     color: #ffffff;
@@ -239,8 +239,8 @@ body {
 }
 
 .footer-section ul li a {
-    position: relative;          /* REQUIRED */
-    display: inline-block;       /* IMPORTANT */
+    position: relative;          
+    display: inline-block;       
     color: #ffffff;
     text-decoration: none;
     font-size: 14px;
@@ -249,7 +249,7 @@ body {
 
 
 .footer-section ul li a {
-    position: relative; /* REQUIRED for ::after */
+    position: relative; 
 }
 
 /* underline animation */
@@ -273,7 +273,7 @@ body {
     margin-bottom: 8px;
 }
 
-/* ================= FOOTER BOTTOM ================= */
+            /* ================= FOOTER BOTTOM ================= */
 .footer-bottom {
     margin-top: 40px;
     padding-top: 15px;
@@ -283,7 +283,20 @@ body {
     opacity: 0.85;
 }
 
-/* ================= RESPONSIVE ================= */
+/* ===== ADMIN LOGIN LINK (FOOTER) ===== */
+.admin-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.admin-link a {
+    color: #ffffff;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+
+            /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
 
     .nav-links {
@@ -643,4 +656,84 @@ body {
     .contact-box {
         grid-template-columns: 1fr;
     }
+}
+
+/* ================= ADMIN LOGIN PAGE ================= */
+
+body {
+    margin: 0;
+    height: 100vh;
+    background: #ffffff;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== CENTER CONTAINER ===== */
+.admin-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* ===== LOGIN BOX ===== */
+.login-box {
+    background: #ffffff;
+    padding: 35px;
+    width: 350px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.login-box h2 {
+    color: rgb(48,47,81);
+    margin-bottom: 5px;
+}
+
+.login-box p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 25px;
+}
+
+/* ===== INPUT FIELDS ===== */
+.input-group {
+    text-align: left;
+    margin-bottom: 18px;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgb(48,47,81);
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: rgb(48,47,81);
+}
+
+/* ===== LOGIN BUTTON ===== */
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    background: rgb(48,47,81);
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    opacity: 0.9;
 }
