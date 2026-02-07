@@ -8,25 +8,23 @@ if (isset($_POST['username'], $_POST['password'])) {
     $password = $_POST['password'];
 
     $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-    $result = $conn->query($sql);
+    $result = mysqli_query($conn, $sql);
 
-    if ($result->num_rows == 1) {
+    if (mysqli_num_rows($result) == 1) {
 
-        $row = $result->fetch_assoc();
+        $row = mysqli_fetch_assoc($result);
+
+        // Create session
         $_SESSION['user_id'] = $row['id'];
         $_SESSION['username'] = $row['username'];
 
-        // Redirect after login
+        // Redirect to HOME page
         header("Location: ../home.php");
         exit();
 
     } else {
-        echo "Invalid username or password.";
+        header("Location: login.php?error=invalid");
+        exit();
     }
-
-} else {
-    echo "Please fill all fields.";
 }
-
-$conn->close();
 ?>
