@@ -1,16 +1,11 @@
 <?php
-session_start();
+require_once "auth_check.php";
 
-/* Block cache */
+/* Disable cache ONLY here */
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Pragma: no-cache");
-
-/* Session check */
-if (!isset($_SESSION['admin_id'])) {
-    header("Location: admin_login.php");
-    exit();
-}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,7 +33,7 @@ if (!isset($_SESSION['admin_id'])) {
     <div class="sidebar">
         <h2>Planify Admin</h2>
 
-        <a href="dashboard.php">Dashboard</a>
+        <a href="add_admin.php">Add Admin</a>
         <a href="manage_users.php">Manage Users</a>
         <a href="manage_bookings.php">Manage Bookings</a>
         <a href="manage_contact.php">Contact Page Content</a>

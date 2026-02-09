@@ -1,29 +1,31 @@
 <?php
 session_start();
-include("../config/db.php"); // database connection
+include("../config/db.php");
 
-/* Allow only POST requests */
+/* Allow only POST */
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     header("Location: admin_login.php");
     exit();
 }
 
-$username = mysqli_real_escape_string($conn, $_POST['username']);
-$password = mysqli_real_escape_string($conn, $_POST['password']);
+$username = trim($_POST['username']);
+$password = trim($_POST['password']);
 
-/* Check admin credentials */
-$query = "SELECT * FROM admin WHERE username='$username' AND password='$password'";
-$result = mysqli_query($conn, $query);
+$stmt = $conn->prepare(
+    "SELECT admin_id, username FROM admin WHERE username = ? AND password = ?"
+);
+$stmt->bind_param("ss", $username, $password);
+$stmt->execute();
 
-if (mysqli_num_rows($result) === 1) {
+$result = $stmt->get_result();
 
-    $admin = mysqli_fetch_assoc($result);
+if ($result->num_rows === 1) {
 
-    /* ===== SET SESSION ===== */
+    $admin = $result->fetch_assoc();
+
     $_SESSION['admin_id'] = $admin['admin_id'];
     $_SESSION['admin_username'] = $admin['username'];
 
-    /* ===== REDIRECT ===== */
     header("Location: dashboard.php");
     exit();
 

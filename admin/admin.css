@@ -89,3 +89,26 @@ body {
     color: rgb(48,47,81);
     margin-bottom: 10px;
 }
+
+/* ================= ADD ADMIN FORM ================= */
+
+form {
+    max-width: 400px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+}
+
+form button {
+    background-color: rgb(48,47,81);
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
