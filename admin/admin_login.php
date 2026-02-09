@@ -1,9 +1,15 @@
 <?php
 session_start();
+
+/* ===== FORCE LOGOUT WHEN OPENING LOGIN PAGE ===== */
 if (isset($_SESSION['admin_id'])) {
-    header("Location: dashboard.php");
-    exit();
+    session_unset();
+    session_destroy();
 }
+
+/* ===== PREVENT CACHING ===== */
+header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
+header("Pragma: no-cache");
 ?>
 
 <!DOCTYPE html>
@@ -24,16 +30,16 @@ if (isset($_SESSION['admin_id'])) {
         <h2>Admin Login</h2>
         <p>Planify Administration</p>
 
-        <form action="admin_login_process.php" method="POST">
+        <form method="post" action="admin_login_process.php" autocomplete="off">
 
             <div class="input-group">
                 <label>Username</label>
-                <input type="text" name="username" required>
+                <input type="text" name="username" autocomplete="off" required>
             </div>
 
             <div class="input-group">
                 <label>Password</label>
-                <input type="password" name="password" required>
+                <input type="password" name="password" autocomplete="new-password" required>
             </div>
 
             <button type="submit" class="login-btn">Login</button>

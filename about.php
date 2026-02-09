@@ -93,40 +93,7 @@
 
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-container">
-
-            <div class="footer-section">
-                <img src="images/logo.jpg" alt="Logo" class="footer-logo">
-                <p class="footer-brand">By Diya & Shital</p>
-            </div>
-
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="contact.php">Contact Us</a></li>
-                    <li><a href="payment.php">Payment</a></li>
-                    <li><a href="ratings.php">Ratings</a></li>
-                    <li><a href="about.php">About Us</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Contact</h4>
-                <p>Email: diyashital@gmail.com</p>
-                <p>Phone: +91 7756053060</p>
-                <ul>
-                    <li><a href="#">Admin</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <div class="footer-bottom">
-            <p>© 2025 Planify. All Rights Reserved.</p>
-        </div>
-    </footer>
+    <?php include("includes/footer.php"); ?>
 
     <!-- JAVASCRIPT -->
     <script>
