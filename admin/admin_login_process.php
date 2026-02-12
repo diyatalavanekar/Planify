@@ -28,9 +28,7 @@ if ($result->num_rows === 1) {
 
     header("Location: dashboard.php");
     exit();
-
 } else {
     header("Location: admin_login.php?error=invalid");
     exit();
 }
-?>

@@ -1,5 +1,5 @@
 <?php
-require_once "auth_check.php";   // session + admin validation
+require_once "auth_check.php";
 require_once "../config/db.php";
 
 $message = "";
@@ -11,10 +11,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     if (!empty($username) && !empty($password)) {
 
-        /* Hash password */
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        /* Insert admin */
         $stmt = $conn->prepare(
             "INSERT INTO admin (username, password) VALUES (?, ?)"
         );
@@ -25,7 +23,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         } else {
             $message = "Username already exists!";
         }
-
     } else {
         $message = "All fields are required!";
     }
@@ -33,38 +30,41 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Add Admin | Planify</title>
     <link rel="stylesheet" href="admin.css">
 </head>
+
 <body>
 
-<div class="main-content">
-    <h1>Add New Admin</h1>
+    <div class="main-content">
+        <h1>Add New Admin</h1>
 
-    <?php if (!empty($message)) { ?>
-        <p><?php echo htmlspecialchars($message); ?></p>
-    <?php } ?>
+        <?php if (!empty($message)) { ?>
+            <p><?php echo htmlspecialchars($message); ?></p>
+        <?php } ?>
 
-    <!-- IMPORTANT: autocomplete OFF + NEW input names -->
-    <form method="POST" autocomplete="off">
+        <!-- IMPORTANT: autocomplete OFF + NEW input names -->
+        <form method="POST" autocomplete="off">
 
-        <input type="text"
-               name="new_username"
-               placeholder="Admin Username"
-               autocomplete="off"
-               required>
+            <input type="text"
+                name="new_username"
+                placeholder="Admin Username"
+                autocomplete="off"
+                required>
 
-        <input type="password"
-               name="new_password"
-               placeholder="Admin Password"
-               autocomplete="new-password"
-               required>
+            <input type="password"
+                name="new_password"
+                placeholder="Admin Password"
+                autocomplete="new-password"
+                required>
 
-        <button type="submit">Add Admin</button>
+            <button type="submit">Add Admin</button>
 
-    </form>
-</div>
+        </form>
+    </div>
 
 </body>
+
 </html>
