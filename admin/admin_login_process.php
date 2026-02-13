@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../config/db.php");
+require_once "../config/db.php";
 
 /* Allow only POST */
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
@@ -11,12 +11,12 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 $username = trim($_POST['username']);
 $password = trim($_POST['password']);
 
+/* Check username + password directly */
 $stmt = $conn->prepare(
     "SELECT admin_id, username FROM admin WHERE username = ? AND password = ?"
 );
 $stmt->bind_param("ss", $username, $password);
 $stmt->execute();
-
 $result = $stmt->get_result();
 
 if ($result->num_rows === 1) {

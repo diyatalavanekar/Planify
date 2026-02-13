@@ -32,10 +32,12 @@ require_once "auth_check.php";
         </div>
 
         <!-- ================= MAIN CONTENT ================= -->
+        <!-- ================= MAIN CONTENT ================= -->
         <div class="main-content">
-            <h1>Welcome, Admin 👋</h1>
+            <h1>
+                Welcome, <?php echo htmlspecialchars($_SESSION['admin_username']); ?> 👋
+            </h1>
             <p>Manage Planify from here</p>
-
             <div class="cards">
                 <div class="card">
                     <h3>Total Users</h3>
