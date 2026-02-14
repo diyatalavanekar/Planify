@@ -1,5 +1,10 @@
 <?php
 require_once "auth_check.php";
+
+if ($_SESSION['admin_username'] !== 'Rasika Prakshale') {
+    header("Location: dashboard.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>

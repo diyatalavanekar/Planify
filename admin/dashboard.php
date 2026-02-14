@@ -22,16 +22,18 @@ require_once "auth_check.php";
         <div class="sidebar">
             <h2>Planify Admin</h2>
 
-            <a href="add_admin.php">Add Admin</a>
+            <?php if ($_SESSION['admin_username'] === 'Rasika Prakshale') { ?>
+                <a href="add_admin.php">Add Admin</a>
+            <?php } ?>
             <a href="manage_users.php">Manage Users</a>
             <a href="manage_bookings.php">Manage Bookings</a>
-            <a href="manage_contact.php">Contact Page Content</a>
+            <a href="update_about.php">About Page Content</a>
+            <a href="update_contact.php">Contact Page Content</a>
             <a href="settings.php">Settings</a>
 
             <a href="logout.php" class="logout-btn">Logout</a>
         </div>
 
-        <!-- ================= MAIN CONTENT ================= -->
         <!-- ================= MAIN CONTENT ================= -->
         <div class="main-content">
             <h1>
