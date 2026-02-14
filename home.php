@@ -15,13 +15,11 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-
 </head>
 
 <body>
 
     <?php include("includes/header.php"); ?>
-
 
     <!-- HERO SECTION -->
     <section class="hero hero-video">

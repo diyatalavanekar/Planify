@@ -1,5 +1,11 @@
 <?php
 require_once "auth_check.php";
+
+if ($_SESSION['admin_username'] !== 'Rasika Prakshale') {
+    header("Location: dashboard.php");
+    exit();
+}
+
 require_once "../config/db.php";
 
 /* Allow only POST */
