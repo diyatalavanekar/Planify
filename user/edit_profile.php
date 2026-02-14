@@ -15,7 +15,7 @@ if (!isset($_SESSION['user_id'])) {
 /* Fetch user data from database */
 $user_id = $_SESSION['user_id'];
 
-$query = "SELECT username, email, phone FROM users WHERE user_id = ?";
+$query = "SELECT username, email, phone FROM users WHERE id = ?";
 $stmt = mysqli_prepare($conn, $query);
 mysqli_stmt_bind_param($stmt, "i", $user_id);
 mysqli_stmt_execute($stmt);
@@ -41,16 +41,7 @@ $user = mysqli_fetch_assoc($result);
 
 <div class="dashboard-container">
 
-    <!-- ============ SIDEBAR ============ -->
-    <div class="sidebar">
-        <h2>Planify</h2>
-        <a href="user_dashboard.php">Dashboard</a>
-        <a href="my_profile.php">My Profile</a>
-        <a href="edit_profile.php">Edit Profile</a>
-        <a href="my_bookings.php">My Bookings</a>
-        <a href="change_password.php">Change Password</a>
-        <a href="../auth/logout.php" class="logout-btn">Logout</a>
-    </div>
+    
 
     <!-- ============ MAIN CONTENT ============ -->
     <div class="main-content">

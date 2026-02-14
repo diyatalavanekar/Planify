@@ -30,7 +30,6 @@ if (!isset($_SESSION['user_id'])) {
         <div class="sidebar">
             <h2>Planify</h2>
 
-            <a href="my_profile.php">My Profile</a>
             <a href="edit_profile.php">Edit Profile</a>
             <a href="my_bookings.php">My Bookings</a>
             <a href="change_password.php">Change Password</a>
