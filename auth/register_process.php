@@ -1,33 +1,42 @@
 <?php
-include("../config/db.php");
+require_once("../config/db.php");
 
-if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $username = $_POST['username'];
-    $email    = $_POST['email'];
-    $password = $_POST['password'];
+    $username = trim($_POST['username']);
+    $email    = trim($_POST['email']);
+    $phone    = trim($_POST['phone']);
+    $password = trim($_POST['password']);
 
-    // Check if user already exists
-    $check = "SELECT * FROM users WHERE username='$username' OR email='$email'";
-    $result = mysqli_query($conn, $check);
+    // Check if email already exists
+    $check_stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+    $check_stmt->bind_param("s", $email);
+    $check_stmt->execute();
+    $check_stmt->store_result();
 
-    if (mysqli_num_rows($result) > 0) {
-        echo "User already registered. <a href='login.php'>Login here</a>";
+    if ($check_stmt->num_rows > 0) {
+        echo "<script>
+                alert('Email already registered. Please login.');
+                window.location.href='login.php';
+              </script>";
         exit();
     }
 
-    // Insert user
-    $sql = "INSERT INTO users (username, email, password)
-            VALUES ('$username', '$email', '$password')";
+    $check_stmt->close();
 
-    if (mysqli_query($conn, $sql)) {
-        header("Location: login.php?registered=success");
-        exit();
+    // Insert new user (NO HASH as requested)
+    $stmt = $conn->prepare("INSERT INTO users (username, email, phone, password) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $username, $email, $phone, $password);
+
+    if ($stmt->execute()) {
+        echo "<script>
+                alert('Registration successful! Please login.');
+                window.location.href='login.php';
+              </script>";
     } else {
-        echo "Registration failed.";
+        echo "Error: " . $conn->error;
     }
 
-} else {
-    echo "All fields are required.";
+    $stmt->close();
+    $conn->close();
 }
-?>

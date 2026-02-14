@@ -24,6 +24,7 @@ $user = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Edit Profile | Planify</title>
@@ -32,6 +33,7 @@ $user = mysqli_fetch_assoc($result);
 
 <script>
     window.history.forward();
+
     function noBack() {
         window.history.forward();
     }
@@ -39,38 +41,38 @@ $user = mysqli_fetch_assoc($result);
 
 <body onload="noBack();" onpageshow="if (event.persisted) noBack();">
 
-<div class="dashboard-container">
+    <div class="dashboard-container">
 
-    
 
-    <!-- ============ MAIN CONTENT ============ -->
-    <div class="main-content">
-        <h1 style="color: rgb(48,47,81);">Edit Profile</h1>
 
-        <form action="update_profile.php" method="POST" class="profile-form">
+        <!-- ============ MAIN CONTENT ============ -->
+        <div class="main-content">
+            <h1 style="color: rgb(48,47,81);">Edit Profile</h1>
 
-            <label>Username</label>
-            <input type="text" name="username"
-                   value="<?php echo htmlspecialchars($user['username']); ?>"
-                   required>
+            <form action="update_profile.php" method="POST" class="profile-form">
 
-            <label>Email</label>
-            <input type="email" name="email"
-                   value="<?php echo htmlspecialchars($user['email']); ?>"
-                   required>
+                <label>Username</label>
+                <input type="text" name="username"
+                    value="<?php echo htmlspecialchars($user['username']); ?>"
+                    required>
 
-            <label>Phone</label>
-            <input type="text" name="phone"
-                   value="<?php echo htmlspecialchars($user['phone']); ?>"
-                   pattern="[0-9]{10}"
-                   title="Enter 10 digit phone number"
-                   required>
+                <label>Email</label>
+                <input type="email" name="email"
+                    value="<?php echo htmlspecialchars($user['email']); ?>"
+                    required>
 
-            <button type="submit" class="btn-save">Update Profile</button>
-        </form>
+                <label>Phone</label>
+                <input type="text" name="phone"
+                    value="<?php echo htmlspecialchars($user['phone']); ?>"
+                    pattern="[0-9]{10}"
+                    title="Enter 10 digit phone number"
+                    required>
+
+                <button type="submit" class="btn-save">Update Profile</button>
+            </form>
+        </div>
+
     </div>
-
-</div>
-
 </body>
+
 </html>

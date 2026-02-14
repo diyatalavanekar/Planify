@@ -11,7 +11,6 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 $username = trim($_POST['username']);
 $password = trim($_POST['password']);
 
-/* Check username + password directly */
 $stmt = $conn->prepare(
     "SELECT admin_id, username FROM admin WHERE username = ? AND password = ?"
 );
@@ -23,9 +22,13 @@ if ($result->num_rows === 1) {
 
     $admin = $result->fetch_assoc();
 
+    /* IMPORTANT: regenerate session ID */
+    session_regenerate_id(true);
+
     $_SESSION['admin_id'] = $admin['admin_id'];
     $_SESSION['admin_username'] = $admin['username'];
 
+    /* Force clean redirect */
     header("Location: dashboard.php");
     exit();
 } else {

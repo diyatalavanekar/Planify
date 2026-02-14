@@ -469,6 +469,25 @@
                 color: #777;
             }
 
+            /* ================= Password of register ================= */
+            .password-group {
+                position: relative;
+            }
+
+            .password-group input {
+                width: 100%;
+                padding-right: 40px;
+            }
+
+            .toggle-password {
+                position: absolute;
+                right: 12px;
+                top: 50%;
+                transform: translateY(-50%);
+                cursor: pointer;
+                font-size: 18px;
+            }
+
             /* ================= RESPONSIVE ================= */
 
             @media (max-width: 768px) {

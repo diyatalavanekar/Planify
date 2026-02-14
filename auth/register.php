@@ -3,14 +3,15 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Register | Planify</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body class="auth-body">
 
-    <!-- Header -->
     <?php include("../includes/header.php"); ?>
 
     <section class="auth-container">
@@ -21,22 +22,29 @@
             <form action="register_process.php" method="POST" onsubmit="return validateForm();">
 
                 <div class="input-group">
-                    <input type="text" name="username" placeholder="Username" required>
+                    <input type="text" name="username" id="username"
+                        placeholder="Username" required>
                 </div>
 
                 <div class="input-group">
-                    <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="email" name="email" id="email"
+                        placeholder="Email Address" required>
+                </div>
+
+                <div class="input-group">
+                    <input type="tel" name="phone" id="phone"
+                        placeholder="Phone Number (10 digits)"
+                        required>
                 </div>
 
                 <div class="input-group">
                     <input type="password" name="password" id="password"
-                           placeholder="Password" required>
+                        placeholder="Password (min 6 characters)" required>
                 </div>
 
                 <div class="input-group">
-                    <!-- confirm password is ONLY for JS validation -->
                     <input type="password" id="confirm_password"
-                           placeholder="Confirm Password" required>
+                        placeholder="Confirm Password" required>
                 </div>
 
                 <button type="submit" class="auth-btn">Register</button>
@@ -49,14 +57,26 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <?php include("../includes/footer.php"); ?>
 
-    <!-- Client-side validation -->
     <script>
         function validateForm() {
+
+            let username = document.getElementById("username").value.trim();
+            let phone = document.getElementById("phone").value.trim();
             let password = document.getElementById("password").value;
             let confirmPassword = document.getElementById("confirm_password").value;
+
+            if (username.length < 3) {
+                alert("Username must be at least 3 characters.");
+                return false;
+            }
+
+            let phonePattern = /^[0-9]{10}$/;
+            if (!phonePattern.test(phone)) {
+                alert("Phone number must be exactly 10 digits.");
+                return false;
+            }
 
             if (password.length < 6) {
                 alert("Password must be at least 6 characters long.");
@@ -73,4 +93,5 @@
     </script>
 
 </body>
+
 </html>
