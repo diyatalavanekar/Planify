@@ -33,39 +33,64 @@
           <div class="about-grid">
 
             <div class="info-box">
-              <h3>📌 Project Overview</h3>
+              <h3>📅 Founded</h3>
               <p>
-                Planify is a web-based event management system that allows users
-                to manage, and book events securely.
+                Planify was founded in 2025 as a Final Year Project with the
+                vision of simplifying event planning and booking through a
+                centralized digital platform.
               </p>
             </div>
 
             <div class="info-box">
-              <h3>🎯 Our Objective</h3>
+              <h3>👩‍💼 Founder & Owner</h3>
               <p>
-                To make booking and managing events easy,
-                efficient, and secure for everyone.
+                Planify is owned and managed by <strong>Rasika Prakshale</strong>.
+                The platform was developed by Shital and Diya under her guidance.
               </p>
             </div>
 
             <div class="info-box">
-              <h3>⚙️ Key Features</h3>
+              <h3>🎯 Our Mission</h3>
+              <p>
+                Our mission is to provide a secure, user-friendly, and efficient
+                event management system that reduces manual work and enhances
+                booking convenience.
+              </p>
+            </div>
+
+            <div class="info-box">
+              <h3>🌍 Our Vision</h3>
+              <p>
+                To become a trusted digital solution for event planning and
+                management, enabling seamless coordination between users and administrators.
+              </p>
+            </div>
+
+            <div class="info-box">
+              <h3>⚙️ What We Offer</h3>
               <ul>
-                <li>User & Admin Login</li>
-                <li>Online Booking System</li>
-                <li>Secure & Structured Design</li>
+                <li>User & Admin Authentication</li>
+                <li>Secure Event Booking</li>
+                <li>Admin Approval System</li>
+                <li>Structured Database Management</li>
               </ul>
             </div>
 
             <div class="info-box">
-              <h3>👩‍💻 Developed By</h3>
-              <p><strong>Shital</strong> & <strong>Diya</strong></p>
-              <span>Final Year Project</span>
+              <h3>🚀 Why Choose Planify?</h3>
+              <p>
+                Planify ensures transparency, security, and ease of use.
+                With admin-controlled management and dynamic content updates,
+                it provides a reliable event handling experience.
+              </p>
             </div>
 
           </div>
+
+
         </div>
-      </section>
+    </div>
+  </section>
 
   </section>
 

@@ -435,6 +435,13 @@
                 gap: 25px;
             }
 
+            .about-grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 25px;
+            }
+
+
             .info-box {
                 background: #f9f9f9;
                 padding: 25px;
