@@ -37,11 +37,6 @@ if (!isset($_SESSION['user_id'])) {
             <div class="cards">
 
                 <div class="card">
-                    <h3>My Profile</h3>
-                    <p>View your personal details</p>
-                </div>
-
-                <div class="card">
                     <h3>Edit Profile</h3>
                     <p>Update your account information</p>
                 </div>
