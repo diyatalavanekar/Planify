@@ -17,8 +17,6 @@ if (!isset($_SESSION['user_id'])) {
 <head>
     <meta charset="UTF-8">
     <title>User Dashboard | Planify</title>
-
-    <!-- User Dashboard CSS -->
     <link rel="stylesheet" href="user.css">
 </head>
 
@@ -26,15 +24,8 @@ if (!isset($_SESSION['user_id'])) {
 
     <div class="dashboard-container">
 
-        <!-- ================= SIDEBAR ================= -->
-        <div class="sidebar">
-            <h2>Planify</h2>
-
-            <a href="edit_profile.php">Edit Profile</a>
-            <a href="my_bookings.php">My Bookings</a>
-            <a href="change_password.php">Change Password</a>
-            <a href="../auth/logout.php" class="logout-btn">Logout</a>
-        </div>
+        <!-- Include Sidebar -->
+        <?php include("../includes/user_sidebar.php"); ?>
 
         <!-- ================= MAIN CONTENT ================= -->
         <div class="main-content">
@@ -44,6 +35,7 @@ if (!isset($_SESSION['user_id'])) {
             <p>Manage your Planify account here</p>
 
             <div class="cards">
+
                 <div class="card">
                     <h3>My Profile</h3>
                     <p>View your personal details</p>
@@ -63,11 +55,11 @@ if (!isset($_SESSION['user_id'])) {
                     <h3>Security</h3>
                     <p>Change your password</p>
                 </div>
+
             </div>
         </div>
 
     </div>
 
 </body>
-
 </html>

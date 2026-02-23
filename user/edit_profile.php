@@ -43,11 +43,11 @@ $user = mysqli_fetch_assoc($result);
 
     <div class="dashboard-container">
 
-
+     <?php include("../includes/user_sidebar.php"); ?>
 
         <!-- ============ MAIN CONTENT ============ -->
         <div class="main-content">
-            <h1 style="color: rgb(48,47,81);">Edit Profile</h1>
+            <h1>Edit Profile</h1>
 
             <form action="update_profile.php" method="POST" class="profile-form">
 

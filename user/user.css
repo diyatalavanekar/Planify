@@ -6,7 +6,7 @@ body {
 
 .dashboard-container {
     display: flex;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /* SIDEBAR */
@@ -73,4 +73,61 @@ body {
 
 .card h3 {
     color: rgb(48,47,81);
+}
+/* =========================================
+   EDIT PROFILE FORM STYLING
+   ========================================= */
+
+.profile-form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    max-width: 500px;
+    margin-top: 30px;
+}
+
+/* Form Labels */
+.profile-form label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+    color: rgb(48,47,81);
+}
+
+/* Form Inputs */
+.profile-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 18px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+/* Input Focus Effect */
+.profile-form input:focus {
+    border-color: rgb(48,47,81);
+    outline: none;
+    box-shadow: 0 0 5px rgba(48,47,81,0.3);
+}
+
+/* Save Button */
+.btn-save {
+    background-color: rgb(48,47,81);
+    color: #ffffff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Button Hover */
+.btn-save:hover {
+    background-color: #ffffff;
+    color: rgb(48,47,81);
+    border: 1px solid rgb(48,47,81);
 }
