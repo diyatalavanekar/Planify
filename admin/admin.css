@@ -237,3 +237,148 @@
             .contact-form-card button:hover {
                 opacity: 0.9;
             }
+
+            /* ================= ADMIN TABLE STYLING ================= */
+            /* Clean modern table for admin panel */
+
+            .admin-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                background-color: #ffffff;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            /* Table header */
+            .admin-table th {
+                background-color: rgb(48, 47, 81);
+                color: #ffffff;
+                text-align: left;
+                padding: 14px;
+                font-size: 14px;
+                letter-spacing: 0.5px;
+            }
+
+            /* Table rows */
+            .admin-table td {
+                padding: 12px 14px;
+                border-bottom: 1px solid #eeeeee;
+                font-size: 14px;
+                color: #333;
+            }
+
+            /* Zebra striping */
+            .admin-table tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            /* Hover effect */
+            .admin-table tr:hover {
+                background-color: #f1f1f1;
+            }
+
+            /* ================= ACTION BUTTONS ================= */
+
+            .edit-btn {
+                color: #28a745;
+                text-decoration: none;
+                font-weight: 500;
+                margin-right: 10px;
+            }
+
+            .edit-btn:hover {
+                text-decoration: underline;
+            }
+
+            .delete-btn {
+                color: #dc3545;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+            .delete-btn:hover {
+                text-decoration: underline;
+            }
+
+            /* ================= ADD EVENT FORM STYLING ================= */
+            /* Clean admin form layout matching dashboard theme */
+
+            .form-container {
+                background: #ffffff;
+                padding: 30px;
+                max-width: 600px;
+                margin-top: 20px;
+                border-radius: 10px;
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            }
+
+            /* Form heading */
+            .form-container h2 {
+                color: rgb(48, 47, 81);
+                margin-bottom: 20px;
+            }
+
+            /* Form labels */
+            .admin-form label {
+                display: block;
+                margin-bottom: 6px;
+                font-weight: 500;
+                color: #333;
+            }
+
+            /* Form inputs & textarea */
+            .admin-form input,
+            .admin-form textarea {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 18px;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                font-size: 14px;
+                transition: 0.3s ease;
+            }
+
+            /* Input focus effect */
+            .admin-form input:focus,
+            .admin-form textarea:focus {
+                border-color: rgb(48, 47, 81);
+                outline: none;
+            }
+
+            /* Primary button */
+            .primary-btn {
+                background-color: rgb(48, 47, 81);
+                color: #ffffff;
+                padding: 10px 18px;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 14px;
+                transition: 0.3s ease;
+            }
+
+            .primary-btn:hover {
+                opacity: 0.9;
+            }
+
+            /* Success / Error Message */
+            .form-message {
+                background-color: #f0f0f8;
+                padding: 10px;
+                margin-bottom: 15px;
+                border-left: 4px solid rgb(48, 47, 81);
+                border-radius: 5px;
+                font-size: 14px;
+            }
+
+            /* ================= SELECT DROPDOWN================= */
+            .admin-form select {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 18px;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                font-size: 14px;
+            }

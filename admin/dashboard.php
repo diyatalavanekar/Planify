@@ -43,8 +43,8 @@ header("Expires: 0");
 
         <a href="settings.php" class="card-link">
             <div class="card">
-                <h3>Website Settings</h3>
-                <p>Update website content</p>
+                <h3>View Admin</h3>
+                <p>View and edit admins</p>
             </div>
         </a>
 
