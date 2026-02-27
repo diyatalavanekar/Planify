@@ -798,3 +798,41 @@
                 text-decoration: none;
                 border-radius: 5px;
             }
+
+            .booking-container {
+                padding: 50px 10%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .booking-form {
+                background: white;
+                padding: 30px;
+                width: 420px;
+                border-radius: 10px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .booking-form label {
+                display: block;
+                margin-top: 15px;
+                font-weight: 500;
+            }
+
+            .booking-form input,
+            .booking-form select {
+                width: 100%;
+                padding: 10px;
+                border-radius: 6px;
+                border: 1px solid #ccc;
+            }
+
+            .booking-form h3 {
+                margin-top: 20px;
+                color: #333;
+            }
+
+            .booking-form h4 {
+                margin-top: 5px;
+                color: #666;
+            }

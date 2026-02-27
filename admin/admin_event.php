@@ -62,6 +62,13 @@ header("Expires: 0");
                 <p>Update Veg and Non-Veg rates</p>
             </div>
         </a>
+
+        <a href="food_items.php" class="card-link">
+            <div class="card">
+                <h3>Manage Food Items</h3>
+                <p>View and manage food items</p>
+            </div>
+        </a>
     </div>
 
 </div>
