@@ -680,8 +680,6 @@
 
             /* ================= ADMIN LOGIN PAGE ================= */
 
-
-
             /* ===== CENTER CONTAINER ===== */
             .admin-login-container {
                 display: flex;
@@ -835,4 +833,42 @@
             .booking-form h4 {
                 margin-top: 5px;
                 color: #666;
+            }
+
+            /* ================= FOOD SELECTION TABLE ================= */
+
+            .food-table {
+                width: 100%;
+                border-collapse: collapse;
+                margin: 15px 0 25px 0;
+                background: #ffffff;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .food-table thead {
+                background: #2f2e51;
+                color: white;
+            }
+
+            .food-table th,
+            .food-table td {
+                padding: 10px;
+                text-align: center;
+                border-bottom: 1px solid #eee;
+                font-size: 14px;
+            }
+
+            .food-table tbody tr:hover {
+                background: #f9f9f9;
+            }
+
+            .food-table input[type="checkbox"] {
+                width: 16px;
+                height: 16px;
+                cursor: pointer;
+            }
+
+            .food-table td:nth-child(2) {
+                text-align: left;
             }

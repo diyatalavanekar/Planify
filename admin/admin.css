@@ -44,6 +44,38 @@
                 background-color: rgba(255, 255, 255, 0.2);
             }
 
+            /* ================= GLOBAL ACTION BUTTONS ================= */
+
+            .action-btn {
+                display: inline-block;
+                padding: 6px 14px;
+                font-size: 13px;
+                border-radius: 6px;
+                text-decoration: none;
+                color: white;
+                font-weight: 500;
+                transition: 0.2s ease;
+                border: none;
+            }
+
+            /* Edit Button */
+            .action-edit {
+                background-color: #46a435;
+            }
+
+            .action-edit:hover {
+                background-color: #327b34;
+            }
+
+            /* Delete Button */
+            .action-delete {
+                background-color: #b91c1c;
+            }
+
+            .action-delete:hover {
+                background-color: #7f1d1d;
+            }
+
             /* ================= LOGOUT BUTTON ================= */
             /* Styled to match theme, not aggressive */
             .logout-btn {
@@ -555,4 +587,200 @@
 
             .btn-back:hover {
                 background: #1f1e3b;
+            }
+
+            /* ================= PACKAGE FORM ONLY ================= */
+
+            .package-form-wrapper {
+                flex: 1;
+                padding: 40px;
+                background: #f4f6f9;
+                display: flex;
+                justify-content: center;
+            }
+
+            .package-form-card {
+                width: 500px;
+                background: #ffffff;
+                padding: 30px;
+                border-radius: 12px;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+            }
+
+            .package-form-card h2 {
+                margin-bottom: 20px;
+                font-size: 22px;
+                color: #2f2e51;
+            }
+
+            .package-group {
+                margin-bottom: 18px;
+            }
+
+            .package-group label {
+                display: block;
+                font-weight: 500;
+                margin-bottom: 6px;
+                color: #333;
+            }
+
+            .package-group input,
+            .package-group select,
+            .package-group textarea {
+                width: 100%;
+                padding: 10px;
+                border-radius: 6px;
+                border: 1px solid #ccc;
+                font-size: 14px;
+                transition: 0.3s ease;
+            }
+
+            .package-group input:focus,
+            .package-group select:focus,
+            .package-group textarea:focus {
+                outline: none;
+                border-color: #2f2e51;
+                box-shadow: 0 0 0 2px rgba(47, 46, 81, 0.15);
+            }
+
+            .package-btn {
+                background: #2f2e51;
+                color: white;
+                padding: 10px 40px;
+                border-radius: 6px;
+                border: none;
+                cursor: pointer;
+                transition: 0.3s ease;
+            }
+
+            .package-btn:hover {
+                background: #1f1e3b;
+            }
+
+            /* ================= PACKAGE TABLE ACTION BUTTONS FIX ================= */
+
+            .admin-table td:last-child {
+                display: flex;
+                justify-content: center;
+                gap: 8px;
+            }
+
+            .admin-table .btn-edit,
+            .admin-table .btn-danger {
+                display: inline-block;
+                padding: 6px 12px;
+                font-size: 13px;
+                border-radius: 5px;
+                text-decoration: none;
+                color: white;
+                font-weight: 500;
+                transition: 0.2s ease;
+            }
+
+            /* Edit button */
+            .admin-table .btn-edit {
+                background-color: #0f766e;
+            }
+
+            .admin-table .btn-edit:hover {
+                background-color: #115e59;
+            }
+
+            /* Delete button */
+            .admin-table .btn-danger {
+                background-color: #b91c1c;
+            }
+
+            .admin-table .btn-danger:hover {
+                background-color: #7f1d1d;
+            }
+
+            /* =====================================================
+   Manage Bookings Page - Admin Panel Styling
+   Theme Color: rgb(48,47,81)
+   Clean, professional dashboard table layout
+===================================================== */
+
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f5f6fa;
+                margin: 0;
+                padding: 0;
+            }
+
+            /* Main container */
+            .container {
+                width: 95%;
+                margin: 40px auto;
+            }
+
+            /* Page title */
+            .page-title {
+                color: rgb(48, 47, 81);
+                margin-bottom: 20px;
+            }
+
+            /* Table styling */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                background-color: #ffffff;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            }
+
+            /* Table header */
+            table thead {
+                background-color: rgb(48, 47, 81);
+                color: #ffffff;
+            }
+
+            table th,
+            table td {
+                padding: 12px;
+                text-align: center;
+                border: 1px solid #ddd;
+                font-size: 14px;
+            }
+
+            /* Status colors */
+            .status-pending {
+                color: orange;
+                font-weight: bold;
+            }
+
+            .status-confirmed {
+                color: green;
+                font-weight: bold;
+            }
+
+            .status-cancelled {
+                color: red;
+                font-weight: bold;
+            }
+
+            /* Buttons */
+            .btn {
+                padding: 6px 12px;
+                text-decoration: none;
+                border-radius: 4px;
+                color: #fff;
+                font-size: 13px;
+                margin: 2px;
+                display: inline-block;
+            }
+
+            .confirm {
+                background-color: green;
+            }
+
+            .cancel {
+                background-color: red;
+            }
+
+            .confirm:hover {
+                background-color: darkgreen;
+            }
+
+            .cancel:hover {
+                background-color: darkred;
             }

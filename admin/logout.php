@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-/* Unset session */
+/* Clear all session variables */
 $_SESSION = [];
 
 /* Destroy session cookie */
@@ -21,11 +21,12 @@ if (ini_get("session.use_cookies")) {
 /* Destroy session */
 session_destroy();
 
-/* Disable cache */
+/* Disable caching */
 header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 header("Cache-Control: private, no-store, no-cache, must-revalidate");
 header("Pragma: no-cache");
 header("Expires: 0");
 
-header("Location: admin_login.php");
+/* Redirect to HOME page */
+header("Location: /Planify/home.php");
 exit();

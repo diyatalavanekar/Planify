@@ -66,7 +66,7 @@ $date_result = $conn->query("
                     <td><?php echo htmlspecialchars($user['email']); ?></td>
                     <td>
                         <a href="delete_user.php?id=<?php echo $user['id']; ?>"
-                            onclick="return confirm('Delete this user?');">
+                            onclick="return confirm('Delete this user?');" class="action-btn action-delete">
                             Delete
                         </a>
                     </td>
