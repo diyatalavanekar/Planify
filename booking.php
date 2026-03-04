@@ -42,6 +42,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $guests = intval($_POST['guests']);
     $veg_qty = intval($_POST['veg_qty']);
     $nonveg_qty = intval($_POST['nonveg_qty']);
+    // Validate total plates = guests
+    if (($veg_qty + $nonveg_qty) != $guests) {
+        echo "<script>
+        alert('Total Veg and Non-Veg plates must be equal to number of guests.');
+        window.history.back();
+    </script>";
+        exit();
+    }
     $event_date = $_POST['event_date'];
 
     $selected_food = $_POST['food_items'] ?? [];
@@ -94,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         echo "<script>
             alert('Booking Submitted Successfully!');
-            window.location='my_bookings.php';
+            window.location='user/my_bookings.php';
         </script>";
         exit();
     }
@@ -243,15 +251,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 descriptionBox.innerText = "";
                 packageNameInput.value = "";
                 packagePriceInput.value = "";
+                calculate();
                 return;
             }
 
-            const packagePrice = parseFloat(selected.getAttribute("data-price")) || 0;
-            const description = selected.getAttribute("data-description") || "";
-
             packageNameInput.value = selected.value;
-            packagePriceInput.value = packagePrice;
-            descriptionBox.innerText = description;
+            packagePriceInput.value = selected.getAttribute("data-price");
+            descriptionBox.innerText = selected.getAttribute("data-description");
 
             calculate();
         }
@@ -284,10 +290,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             remainingSpan.innerText = remaining.toFixed(2);
         }
 
+        /* EVENTS */
         packageSelect.addEventListener("change", updatePackageDetails);
-
         document.querySelectorAll("input").forEach(el => {
             el.addEventListener("change", calculate);
+        });
+
+        /* SUBMIT VALIDATION (ONLY ONCE) */
+        document.querySelector(".booking-form").addEventListener("submit", function(e) {
+
+            const guests = parseInt(document.getElementById("guests").value) || 0;
+            const vegQty = parseInt(document.getElementById("veg_qty").value) || 0;
+            const nonvegQty = parseInt(document.getElementById("nonveg_qty").value) || 0;
+
+            if ((vegQty + nonvegQty) !== guests) {
+                alert("Total Veg and Non-Veg plates must equal number of guests.");
+                e.preventDefault();
+            }
         });
     </script>
 

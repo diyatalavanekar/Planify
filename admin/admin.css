@@ -133,8 +133,6 @@
                 border-radius: 10px;
                 transition: 0.3s ease;
                 cursor: pointer;
-
-                /* IMPORTANT FIX */
                 height: 100%;
                 display: flex;
                 flex-direction: column;
@@ -210,13 +208,6 @@
             }
 
             /* ============Update Contact Page============ */
-
-            /* ==================================================
-   UPDATE CONTACT PAGE STYLING
-   Uses existing admin dashboard layout
-   Theme Color: rgb(48,47,81)
-   ================================================== */
-
             .page-title {
                 color: rgb(48, 47, 81);
                 margin-bottom: 20px;

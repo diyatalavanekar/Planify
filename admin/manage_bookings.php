@@ -100,7 +100,7 @@ $result = mysqli_query($conn, $query);
             <tbody>
                 <?php while ($row = mysqli_fetch_assoc($result)) { ?>
                     <tr>
-                        <td>Booking<?php echo $row['id']; ?></td>
+                        <td>Booking <?php echo $row['id']; ?></td>
                         <td><?php echo htmlspecialchars($row['user_name']); ?></td>
                         <td><?php echo htmlspecialchars($row['event_name']); ?></td>
                         <td><?php echo date("d M Y", strtotime($row['booking_date'])); ?></td>

@@ -17,6 +17,11 @@ body {
     min-height: 100vh;
 }
 
+/* DASHBOARD LAYOUT */
+.dashboard-wrapper {
+    display: flex;
+}
+
 /* =========================================
    HEADER STYLING
    ========================================= */
@@ -31,10 +36,11 @@ header img {
    ========================================= */
 
 .sidebar {
-    width: 230px;
-    background-color: rgb(48,47,81);   /* Theme Color */
+    width: 250px;
+    background-color: rgb(48, 47, 81);
+    color: white;
     padding: 20px;
-    color: #ffffff;
+    min-height: 100vh;
 }
 
 .sidebar h2 {
@@ -53,21 +59,21 @@ header img {
 }
 
 .sidebar a:hover {
-    background-color: rgba(255,255,255,0.15);
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 /* Logout Button */
 
 .logout-btn {
     margin-top: 30px;
-    background-color: rgba(255,255,255,0.15);
-    border: 1px solid rgba(255,255,255,0.4);
+    background-color: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     text-align: center;
 }
 
 .logout-btn:hover {
     background-color: #ffffff;
-    color: rgb(48,47,81);
+    color: rgb(48, 47, 81);
 }
 
 /* =========================================
@@ -76,38 +82,61 @@ header img {
 
 .main-content {
     flex: 1;
-    padding: 30px;
+    padding: 40px;
+    background-color: #f4f6f9;
+    max-width: 1200px;
+    /* Controls card spread */
 }
 
 .main-content h1 {
-    color: rgb(48,47,81);   /* Theme Color */
+    color: rgb(48, 47, 81);
+    margin-bottom: 10px;
 }
 
-/* =========================================
-   DASHBOARD CARDS
-   ========================================= */
-
+/* ================= DASHBOARD CARDS ================= */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .card {
-    background-color: #ffffff;
+    background: #fff;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    transition: 0.3s;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.card h3 {
+    color: rgb(48, 47, 81);
+    margin-bottom: 10px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s ease;
+    cursor: pointer;
+    height: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .card:hover {
     transform: translateY(-5px);
-}
-
-.card h3 {
-    color: rgb(48,47,81);   /* Theme Color */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* =========================================
@@ -118,21 +147,17 @@ header img {
     background-color: #ffffff;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
     max-width: 500px;
     margin-top: 30px;
 }
-
-/* Form Labels */
 
 .profile-form label {
     display: block;
     margin-bottom: 6px;
     font-weight: bold;
-    color: rgb(48,47,81);   /* Theme Color */
+    color: rgb(48, 47, 81);
 }
-
-/* Form Inputs */
 
 .profile-form input {
     width: 100%;
@@ -144,18 +169,14 @@ header img {
     transition: 0.3s;
 }
 
-/* Input Focus Effect */
-
 .profile-form input:focus {
-    border-color: rgb(48,47,81);
+    border-color: rgb(48, 47, 81);
     outline: none;
-    box-shadow: 0 0 5px rgba(48,47,81,0.3);
+    box-shadow: 0 0 5px rgba(48, 47, 81, 0.3);
 }
 
-/* Save Button */
-
 .btn-save {
-    background-color: rgb(48,47,81);   /* Theme Color */
+    background-color: rgb(48, 47, 81);
     color: #ffffff;
     padding: 12px 20px;
     border: none;
@@ -165,10 +186,93 @@ header img {
     transition: 0.3s;
 }
 
-/* Button Hover */
+/* ==========================================
+   MY BOOKINGS PAGE STYLING
+   ========================================== */
 
-.btn-save:hover {
-    background-color: #ffffff;
-    color: rgb(48,47,81);
-    border: 1px solid rgb(48,47,81);
+.my-bookings-container {
+    width: 95%;
+    margin: 30px auto 50px auto;
+}
+
+/* Page Title */
+.my-bookings-title {
+    color: rgb(48, 47, 81);
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+/* Table Wrapper */
+.my-bookings-table-wrapper {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+}
+
+/* Table */
+.my-bookings-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Table Head */
+.my-bookings-table th {
+    background-color: rgb(48, 47, 81);
+    color: #ffffff;
+    padding: 14px;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* Table Cells */
+.my-bookings-table td {
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+}
+
+/* Row Hover */
+.my-bookings-table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Status Styles */
+.status-pending {
+    color: #ff9800;
+    font-weight: 600;
+}
+
+.status-confirmed {
+    color: #4caf50;
+    font-weight: 600;
+}
+
+.status-cancelled {
+    color: #f44336;
+    font-weight: 600;
+}
+
+/* No Bookings Message */
+.no-bookings {
+    padding: 20px;
+    text-align: center;
+    font-size: 16px;
+    color: #555;
+}
+
+/* =========================================
+   INLINE ERROR STYLING
+   ========================================= */
+
+.error {
+    color: red;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+input.error-border {
+    border: 1px solid red;
 }

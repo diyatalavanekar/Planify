@@ -1,16 +1,16 @@
 <?php
 session_start();
-include("../config/db.php"); // database connection
+include("../config/db.php");
 
-/* Block cache */
-header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
-header("Pragma: no-cache");
-
-/* Session check */
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../auth/login.php");
+    header("Location: ../login.php");
     exit();
 }
+
+/* Prevent caching of protected pages */
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
 
 /* Fetch user data from database */
 $user_id = $_SESSION['user_id'];
@@ -43,7 +43,7 @@ $user = mysqli_fetch_assoc($result);
 
     <div class="dashboard-container">
 
-     <?php include("../includes/user_sidebar.php"); ?>
+        <?php include("../includes/user_sidebar.php"); ?>
 
         <!-- ============ MAIN CONTENT ============ -->
         <div class="main-content">
