@@ -1,33 +1,19 @@
 <?php
-session_start();
 require_once "../config/db.php";
 require_once "auth_check.php";
 
-$message = "";
-
-// Fetch events
-$events = mysqli_query($conn, "SELECT * FROM events");
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $event_id = $_POST['event_id'];
-    $package_name = trim($_POST['package_name']);
-    $package_price = trim($_POST['package_price']);
+    $event_id = intval($_POST['event_id']);
+    $package_name = mysqli_real_escape_string($conn, $_POST['package_name']);
+    $package_price = floatval($_POST['package_price']);
+    $description = mysqli_real_escape_string($conn, $_POST['description']);
 
-    if (empty($event_id) || empty($package_name) || empty($package_price)) {
-        $message = "All fields are required.";
-    } elseif (!is_numeric($package_price) || $package_price <= 0) {
-        $message = "Invalid package price.";
-    } else {
+    $query = "INSERT INTO packages (event_id, package_name, package_price, description)
+              VALUES ('$event_id', '$package_name', '$package_price', '$description')";
 
-        $stmt = $conn->prepare("INSERT INTO packages (event_id, package_name, package_price) VALUES (?, ?, ?)");
-        $stmt->bind_param("isd", $event_id, $package_name, $package_price);
-
-        if ($stmt->execute()) {
-            $message = "Package added successfully!";
-        } else {
-            $message = "Error adding package.";
-        }
+    if (mysqli_query($conn, $query)) {
+        echo "<script>alert('Package Added Successfully'); window.location='view_packages.php';</script>";
     }
 }
 ?>
@@ -36,47 +22,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 
 <head>
-    <title>Manage Packages | Admin</title>
+    <title>Add Package</title>
     <link rel="stylesheet" href="admin.css">
 </head>
 
 <body>
-
     <?php include("admin_header.php"); ?>
     <?php include("admin_sidebar.php"); ?>
 
-    <div class="main-content">
-        <div class="form-container">
-            <h2>Add Package</h2>
+    <div class="package-form-wrapper">
+        <div class="package-form-card">
 
-            <?php if ($message != "") echo "<div class='form-message'>$message</div>"; ?>
+            <h2>Add New Package</h2>
 
-            <form method="POST" class="admin-form">
+            <form method="POST" class="package-form">
 
-                <label>Select Event</label>
-                <select name="event_id" required>
-                    <option value="">Select Event</option>
-                    <?php while ($row = mysqli_fetch_assoc($events)) { ?>
-                        <option value="<?php echo $row['id']; ?>">
-                            <?php echo $row['event_name']; ?>
-                        </option>
-                    <?php } ?>
-                </select>
+                <div class="package-group">
+                    <label>Select Event</label>
+                    <select name="event_id" required>
+                        <?php
+                        $events = mysqli_query($conn, "SELECT * FROM events");
+                        while ($event = mysqli_fetch_assoc($events)) {
+                        ?>
+                            <option value="<?php echo $event['id']; ?>">
+                                <?php echo $event['event_name']; ?>
+                            </option>
+                        <?php } ?>
+                    </select>
+                </div>
 
-                <label>Package Name</label>
-                <input type="text" name="package_name" required>
+                <div class="package-group">
+                    <label>Package Name</label>
+                    <input type="text" name="package_name" required>
+                </div>
 
-                <label>Package Price</label>
-                <input type="number" name="package_price" min="1" required>
+                <div class="package-group">
+                    <label>Package Price</label>
+                    <input type="number" name="package_price" step="0.01" required>
+                </div>
 
-                <button type="submit" class="primary-btn">Add Package</button>
+                <div class="package-group">
+                    <label>Package Description</label>
+                    <textarea name="description" rows="4" required></textarea>
+                </div>
+
+                <button type="submit" class="package-btn">Add Package</button>
 
             </form>
+
         </div>
     </div>
-
     <?php include("admin_footer.php"); ?>
-
 </body>
 
 </html>

@@ -48,10 +48,10 @@ $result = mysqli_query($conn, "SELECT * FROM events ORDER BY id DESC");
                     <td><?php echo htmlspecialchars($row['description']); ?></td>
 
                     <td>
-                        <a href="edit_event.php?id=<?php echo $row['id']; ?>" class="edit-btn">Edit</a>
+                        <a href="edit_event.php?id=<?php echo $row['id']; ?>" class="action-btn action-edit">Edit</a>
                         <a href="delete_event.php?id=<?php echo $row['id']; ?>"
                             onclick="return confirm('Are you sure?')"
-                            class="delete-btn">Delete</a>
+                            class="action-btn action-delete">Delete</a>
                     </td>
                 </tr>
             <?php } ?>

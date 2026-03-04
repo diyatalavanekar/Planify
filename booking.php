@@ -2,13 +2,13 @@
 session_start();
 require_once "config/db.php";
 
-/* ================= LOGIN CHECK ================= */
+/* LOGIN CHECK */
 if (!isset($_SESSION['user_id'])) {
     header("Location: auth/login.php");
     exit();
 }
 
-/* ================= EVENT CHECK ================= */
+/* EVENT CHECK */
 if (!isset($_GET['event_id'])) {
     header("Location: events.php");
     exit();
@@ -17,24 +17,22 @@ if (!isset($_GET['event_id'])) {
 $user_id = $_SESSION['user_id'];
 $event_id = intval($_GET['event_id']);
 
-/* Fetch Event */
-$event_query = mysqli_query($conn, "SELECT * FROM events WHERE id=$event_id");
-$event = mysqli_fetch_assoc($event_query);
+/* FETCH EVENT */
+$event = mysqli_fetch_assoc(
+    mysqli_query($conn, "SELECT * FROM events WHERE id=$event_id")
+);
 
 if (!$event) {
     echo "Event not found.";
     exit();
 }
 
-/* Fetch Packages */
+/* FETCH PACKAGES */
 $packages = mysqli_query($conn, "SELECT * FROM packages WHERE event_id=$event_id");
 
-/* Fetch Food Prices */
-$food_query = mysqli_query($conn, "SELECT * FROM food_prices LIMIT 1");
-$food = mysqli_fetch_assoc($food_query);
-
-$veg_price = $food['veg_price'];
-$nonveg_price = $food['nonveg_price'];
+/* FETCH FOOD ITEMS */
+$veg_items = mysqli_query($conn, "SELECT * FROM food_items WHERE type='Veg'");
+$nonveg_items = mysqli_query($conn, "SELECT * FROM food_items WHERE type='NonVeg'");
 
 /* ================= FORM SUBMIT ================= */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -44,29 +42,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $guests = intval($_POST['guests']);
     $veg_qty = intval($_POST['veg_qty']);
     $nonveg_qty = intval($_POST['nonveg_qty']);
+    $event_date = $_POST['event_date'];
 
-    if (($veg_qty + $nonveg_qty) > $guests) {
-        echo "<script>alert('Plates cannot exceed guests');</script>";
-    } else {
+    $selected_food = $_POST['food_items'] ?? [];
 
-        $total = $package_price + ($veg_qty * $veg_price) + ($nonveg_qty * $nonveg_price);
-        $advance = $total * 0.20;
-        $remaining = $total - $advance;
+    $food_total = 0;
 
-        $insert = "INSERT INTO bookings 
-            (user_id, event_id, package_name, package_price, guests, veg_qty, nonveg_qty, total_amount, advance_amount, remaining_amount) 
-            VALUES 
-            ('$user_id', '$event_id', '$package_name', '$package_price', '$guests', '$veg_qty', '$nonveg_qty', '$total', '$advance', '$remaining')";
+    foreach ($selected_food as $food_id) {
+        $food_id = intval($food_id);
+        $food = mysqli_fetch_assoc(
+            mysqli_query($conn, "SELECT * FROM food_items WHERE id=$food_id")
+        );
 
-        if (mysqli_query($conn, $insert)) {
-            echo "<script>
-                alert('Booking Submitted! Please visit office to pay advance.');
-                window.location='my_bookings.php';
-            </script>";
-            exit();
-        } else {
-            echo "Error: " . mysqli_error($conn);
+        if ($food) {
+            if ($food['type'] == "Veg") {
+                $food_total += $food['price'] * $veg_qty;
+            } else {
+                $food_total += $food['price'] * $nonveg_qty;
+            }
         }
+    }
+
+    $total = $package_price + $food_total;
+    $advance = $total * 0.20;
+    $remaining = $total - $advance;
+
+    $insert_booking = "INSERT INTO bookings
+        (user_id, event_id, event_date, package_name, package_price, guests, veg_qty, nonveg_qty, total_amount, advance_amount, remaining_amount)
+        VALUES
+        ('$user_id', '$event_id', '$event_date', '$package_name', '$package_price', '$guests', '$veg_qty', '$nonveg_qty', '$total', '$advance', '$remaining')";
+
+    if (mysqli_query($conn, $insert_booking)) {
+
+        $booking_id = mysqli_insert_id($conn);
+
+        foreach ($selected_food as $food_id) {
+
+            $food_id = intval($food_id);
+
+            $food = mysqli_fetch_assoc(
+                mysqli_query($conn, "SELECT * FROM food_items WHERE id=$food_id")
+            );
+
+            if ($food) {
+                mysqli_query($conn, "INSERT INTO booking_food_items
+                    (booking_id, food_item_id, type, price)
+                    VALUES
+                    ('$booking_id', '$food_id', '{$food['type']}', '{$food['price']}')");
+            }
+        }
+
+        echo "<script>
+            alert('Booking Submitted Successfully!');
+            window.location='my_bookings.php';
+        </script>";
+        exit();
     }
 }
 ?>
@@ -88,23 +118,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 
     <div class="booking-container">
-
         <form method="POST" class="booking-form">
 
             <!-- PACKAGE -->
             <label>Select Package</label>
-            <select id="package_select" required>
+            <select id="package_select" name="package_select" required>
                 <option value="">Select Package</option>
                 <?php while ($row = mysqli_fetch_assoc($packages)) { ?>
                     <option
-                        data-name="<?php echo $row['package_name']; ?>"
-                        data-price="<?php echo $row['package_price']; ?>">
+                        value="<?php echo $row['package_name']; ?>"
+                        data-price="<?php echo $row['package_price']; ?>"
+                        data-description="<?php echo htmlspecialchars($row['description']); ?>">
                         <?php echo $row['package_name']; ?> (₹<?php echo $row['package_price']; ?>)
                     </option>
                 <?php } ?>
             </select>
 
-            <!-- Hidden Fields -->
+            <p id="package_description" style="margin:8px 0 15px 0; color:#444;"></p>
+
             <input type="hidden" name="package_name" id="package_name">
             <input type="hidden" name="package_price" id="package_price">
 
@@ -112,15 +143,77 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label>Number of Guests</label>
             <input type="number" name="guests" id="guests" min="1" required>
 
-            <!-- VEG -->
-            <label>Veg Plates (₹<?php echo $veg_price; ?> per plate)</label>
+            <!-- VEG ITEMS -->
+            <h3>Choose Items For Veg Thali</h3>
+
+            <table class="food-table">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Item Name</th>
+                        <th>Price (₹)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($veg = mysqli_fetch_assoc($veg_items)) { ?>
+                        <tr>
+                            <td>
+                                <input type="checkbox"
+                                    name="food_items[]"
+                                    class="food_item"
+                                    value="<?php echo $veg['id']; ?>"
+                                    data-price="<?php echo $veg['price']; ?>"
+                                    data-type="Veg">
+                            </td>
+                            <td><?php echo $veg['item_name']; ?></td>
+                            <td><?php echo $veg['price']; ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+
+            <label>Number of Veg Plates</label>
             <input type="number" name="veg_qty" id="veg_qty" min="0" value="0">
 
-            <!-- NON VEG -->
-            <label>Non-Veg Plates (₹<?php echo $nonveg_price; ?> per plate)</label>
+            <!-- NON VEG ITEMS -->
+            <h3>Choose Items For Non Veg Thali</h3>
+
+            <table class="food-table">
+                <thead>
+                    <tr>
+                        <th>Select</th>
+                        <th>Item Name</th>
+                        <th>Price (₹)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($nonveg = mysqli_fetch_assoc($nonveg_items)) { ?>
+                        <tr>
+                            <td>
+                                <input type="checkbox"
+                                    name="food_items[]"
+                                    class="food_item"
+                                    value="<?php echo $nonveg['id']; ?>"
+                                    data-price="<?php echo $nonveg['price']; ?>"
+                                    data-type="NonVeg">
+                            </td>
+                            <td><?php echo $nonveg['item_name']; ?></td>
+                            <td><?php echo $nonveg['price']; ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+
+            <label>Number of Non-Veg Plates</label>
             <input type="number" name="nonveg_qty" id="nonveg_qty" min="0" value="0">
 
-            <!-- TOTAL DISPLAY -->
+            <label>Event Date</label>
+            <input type="date"
+                name="event_date"
+                min="<?php echo date('Y-m-d'); ?>"
+                required>
+
+            <!-- TOTAL -->
             <h3>Total: ₹<span id="total">0</span></h3>
             <h4>Advance (20%): ₹<span id="advance">0</span></h4>
             <h4>Remaining (80%): ₹<span id="remaining">0</span></h4>
@@ -128,7 +221,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <button type="submit" class="btn">Submit Booking</button>
 
         </form>
-
     </div>
 
     <?php include("includes/footer.php"); ?>
@@ -137,37 +229,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         const packageSelect = document.getElementById("package_select");
         const packageNameInput = document.getElementById("package_name");
         const packagePriceInput = document.getElementById("package_price");
-        const guests = document.getElementById("guests");
-        const veg = document.getElementById("veg_qty");
-        const nonveg = document.getElementById("nonveg_qty");
+        const descriptionBox = document.getElementById("package_description");
 
         const totalSpan = document.getElementById("total");
         const advanceSpan = document.getElementById("advance");
         const remainingSpan = document.getElementById("remaining");
 
-        const vegPrice = <?php echo $veg_price; ?>;
-        const nonvegPrice = <?php echo $nonveg_price; ?>;
-
-        function calculate() {
+        function updatePackageDetails() {
 
             const selected = packageSelect.options[packageSelect.selectedIndex];
-            const packagePrice = parseFloat(selected.getAttribute("data-price")) || 0;
 
-            packageNameInput.value = selected.getAttribute("data-name") || "";
-            packagePriceInput.value = packagePrice;
-
-            const guestCount = parseInt(guests.value) || 0;
-            const vegQty = parseInt(veg.value) || 0;
-            const nonvegQty = parseInt(nonveg.value) || 0;
-
-            if ((vegQty + nonvegQty) > guestCount) {
-                totalSpan.innerText = "0";
-                advanceSpan.innerText = "0";
-                remainingSpan.innerText = "0";
+            if (!selected || selected.value === "") {
+                descriptionBox.innerText = "";
+                packageNameInput.value = "";
+                packagePriceInput.value = "";
                 return;
             }
 
-            const total = packagePrice + (vegQty * vegPrice) + (nonvegQty * nonvegPrice);
+            const packagePrice = parseFloat(selected.getAttribute("data-price")) || 0;
+            const description = selected.getAttribute("data-description") || "";
+
+            packageNameInput.value = selected.value;
+            packagePriceInput.value = packagePrice;
+            descriptionBox.innerText = description;
+
+            calculate();
+        }
+
+        function calculate() {
+
+            const packagePrice = parseFloat(packagePriceInput.value) || 0;
+            const vegQty = parseInt(document.getElementById("veg_qty").value) || 0;
+            const nonvegQty = parseInt(document.getElementById("nonveg_qty").value) || 0;
+
+            let total = packagePrice;
+
+            document.querySelectorAll(".food_item:checked").forEach(item => {
+
+                const price = parseFloat(item.getAttribute("data-price"));
+                const type = item.getAttribute("data-type");
+
+                if (type === "Veg") {
+                    total += price * vegQty;
+                } else {
+                    total += price * nonvegQty;
+                }
+            });
+
             const advance = total * 0.20;
             const remaining = total - advance;
 
@@ -176,10 +284,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             remainingSpan.innerText = remaining.toFixed(2);
         }
 
-        packageSelect.addEventListener("change", calculate);
-        guests.addEventListener("input", calculate);
-        veg.addEventListener("input", calculate);
-        nonveg.addEventListener("input", calculate);
+        packageSelect.addEventListener("change", updatePackageDetails);
+
+        document.querySelectorAll("input").forEach(el => {
+            el.addEventListener("change", calculate);
+        });
     </script>
 
 </body>

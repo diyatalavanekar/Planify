@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label>Type</label>
                 <select name="type">
                     <option value="Veg">Veg</option>
-                    <option value="NonVeg">NonVeg</option>
+                    <option value="NonVeg">Non Veg</option>
                 </select>
             </div>
 

@@ -33,22 +33,6 @@ header("Expires: 0");
             </div>
         </a>
 
-        <!-- Edit Event -->
-        <a href="view_events.php" class="card-link">
-            <div class="card">
-                <h3>Edit Event</h3>
-                <p>Modify existing event details</p>
-            </div>
-        </a>
-
-        <!-- Delete Event -->
-        <a href="view_events.php" class="card-link">
-            <div class="card">
-                <h3>Delete Event</h3>
-                <p>Remove unwanted events</p>
-            </div>
-        </a>
-
         <a href="add_package.php" class="card-link">
             <div class="card">
                 <h3>Add Packages</h3>
@@ -56,10 +40,10 @@ header("Expires: 0");
             </div>
         </a>
 
-        <a href="set_food_price.php" class="card-link">
+        <a href="view_packages.php" class="card-link">
             <div class="card">
-                <h3>Set Food Prices</h3>
-                <p>Update Veg and Non-Veg rates</p>
+                <h3>View Packages</h3>
+                <p>See all existing packages</p>
             </div>
         </a>
 
