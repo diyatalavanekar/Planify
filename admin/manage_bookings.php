@@ -50,16 +50,18 @@ if (isset($_GET['action']) && isset($_GET['id'])) {
 $query = "
 SELECT 
     b.id,
+    b.event_date,
     b.package_name,
-    b.booking_date,
     b.total_amount,
+    b.veg_qty,
+    b.nonveg_qty,
     b.status,
     u.username AS user_name,
     e.event_name
 FROM bookings b
 JOIN users u ON b.user_id = u.id
 JOIN events e ON b.event_id = e.id
-ORDER BY b.id DESC
+ORDER BY b.event_date ASC, b.id DESC
 ";
 
 $result = mysqli_query($conn, $query);
@@ -79,7 +81,7 @@ $result = mysqli_query($conn, $query);
 <body>
     <?php include("admin_header.php"); ?>
     <?php include("admin_sidebar.php"); ?>
-    <div class="container">
+    <div class="main-content">
 
         <h2 class="page-title">Manage Bookings</h2>
 
@@ -98,13 +100,29 @@ $result = mysqli_query($conn, $query);
             </thead>
 
             <tbody>
-                <?php while ($row = mysqli_fetch_assoc($result)) { ?>
+                <?php
+                $current_date = null;
+
+                while ($row = mysqli_fetch_assoc($result)) {
+
+                    if ($current_date != $row['event_date']) {
+                        $current_date = $row['event_date'];
+                ?>
+                        <tr style="background:#f4f6fb;">
+                            <td colspan="8" style="font-weight:bold; text-align:left;">
+                                Event Date: <?php echo date("d M Y", strtotime($current_date)); ?>
+                            </td>
+                        </tr>
+                    <?php } ?>
+
                     <tr>
                         <td>Booking <?php echo $row['id']; ?></td>
                         <td><?php echo htmlspecialchars($row['user_name']); ?></td>
                         <td><?php echo htmlspecialchars($row['event_name']); ?></td>
-                        <td><?php echo date("d M Y", strtotime($row['booking_date'])); ?></td>
                         <td><?php echo htmlspecialchars($row['package_name']); ?></td>
+                        <td>Veg: <?php echo $row['veg_qty']; ?> <br>
+                            NonVeg: <?php echo $row['nonveg_qty']; ?>
+                        </td>
                         <td>₹<?php echo number_format($row['total_amount']); ?></td>
 
                         <td>
@@ -118,6 +136,9 @@ $result = mysqli_query($conn, $query);
                         </td>
 
                         <td>
+                            <a href="booking_details.php?id=<?php echo $row['id']; ?>" class="btn">
+                                View
+                            </a>
                             <?php if ($row['status'] == 'Pending') { ?>
                                 <a href="?action=confirm&id=<?php echo $row['id']; ?>"
                                     class="btn confirm"
@@ -135,6 +156,7 @@ $result = mysqli_query($conn, $query);
                             <?php } ?>
                         </td>
                     </tr>
+
                 <?php } ?>
             </tbody>
 

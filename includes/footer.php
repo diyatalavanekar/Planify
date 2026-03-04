@@ -16,7 +16,6 @@
             <h4>Quick Links</h4>
             <ul>
                 <li><a href="/planify/contact.php">Contact Us</a></li>
-                <li><a href="/planify/payment.php">Payment</a></li>
                 <li><a href="/planify/ratings.php">Feedback</a></li>
                 <li><a href="/planify/about.php">About Us</a></li>
             </ul>
@@ -36,12 +35,12 @@
         <p>© 2025 Planify. All Rights Reserved.</p>
     </div>
     <div class="footer-section admin-link">
-    <ul>
-        <li>
-            <a href="/Planify/admin/admin_login.php">Admin</a>
-        </li>
-    </ul>
-</div>
+        <ul>
+            <li>
+                <a href="/Planify/admin/admin_login.php">Admin</a>
+            </li>
+        </ul>
+    </div>
 
 
 </footer>

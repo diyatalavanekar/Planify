@@ -775,3 +775,91 @@
             .cancel:hover {
                 background-color: darkred;
             }
+
+            /* ============================= */
+            /* Booking Details Page Styling  */
+            /* ============================= */
+
+            .container {
+                margin-left: 10px;
+                padding: 10px;
+            }
+
+            .page-title {
+                font-size: 26px;
+                margin-bottom: 20px;
+                color: rgb(48, 47, 81);
+            }
+
+            .details-card {
+                background: #fff;
+                padding: 25px 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+                max-width: 800px;
+            }
+
+            .details-card h3 {
+                margin-top: 20px;
+                margin-bottom: 10px;
+                color: #444;
+                border-bottom: 2px solid #eee;
+                padding-bottom: 5px;
+            }
+
+            .details-card p {
+                margin: 8px 0;
+                font-size: 15px;
+            }
+
+            .details-card ul {
+                margin: 10px 0;
+                padding-left: 20px;
+            }
+
+            .details-card li {
+                margin-bottom: 6px;
+            }
+
+            /* ============================= */
+            /* Status Styling                */
+            /* ============================= */
+
+            .status-pending {
+                background: #fff3cd;
+                color: #856404;
+                padding: 4px 10px;
+                border-radius: 20px;
+                font-size: 13px;
+            }
+
+            .status-confirmed {
+                background: #d4edda;
+                color: #155724;
+                padding: 4px 10px;
+                border-radius: 20px;
+                font-size: 13px;
+            }
+
+            .status-cancelled {
+                background: #f8d7da;
+                color: #721c24;
+                padding: 4px 10px;
+                border-radius: 20px;
+                font-size: 13px;
+            }
+
+            /* ============================= */
+            /* Buttons                       */
+            /* ============================= */
+
+            .btn {
+                display: inline-block;
+                padding: 8px 15px;
+                background: rgb(48, 47, 81);
+                color: #fff;
+                text-decoration: none;
+                border-radius: 6px;
+                font-size: 14px;
+                transition: 0.3s;
+            }
