@@ -1,20 +1,40 @@
+/* =========================================
+   GLOBAL STYLING
+   ========================================= */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    background-color: #f4f4f4;
 }
+
+/* =========================================
+   DASHBOARD LAYOUT
+   ========================================= */
 
 .dashboard-container {
     display: flex;
     min-height: 100vh;
 }
 
-/* SIDEBAR */
+/* =========================================
+   HEADER STYLING
+   ========================================= */
+
+header img {
+    height: 50px;
+    width: auto;
+}
+
+/* =========================================
+   SIDEBAR STYLING
+   ========================================= */
+
 .sidebar {
     width: 230px;
-    background-color: rgb(48,47,81);
+    background-color: rgb(48,47,81);   /* Theme Color */
     padding: 20px;
-    color: #fff;
+    color: #ffffff;
 }
 
 .sidebar h2 {
@@ -24,16 +44,19 @@ body {
 
 .sidebar a {
     display: block;
-    color: #fff;
+    color: #ffffff;
     padding: 12px;
     text-decoration: none;
     margin-bottom: 8px;
     border-radius: 5px;
+    transition: 0.3s;
 }
 
 .sidebar a:hover {
     background-color: rgba(255,255,255,0.15);
 }
+
+/* Logout Button */
 
 .logout-btn {
     margin-top: 30px;
@@ -43,19 +66,26 @@ body {
 }
 
 .logout-btn:hover {
-    background-color: #fff;
+    background-color: #ffffff;
     color: rgb(48,47,81);
 }
 
-/* MAIN CONTENT */
+/* =========================================
+   MAIN CONTENT AREA
+   ========================================= */
+
 .main-content {
     flex: 1;
     padding: 30px;
 }
 
 .main-content h1 {
-    color: rgb(48,47,81);
+    color: rgb(48,47,81);   /* Theme Color */
 }
+
+/* =========================================
+   DASHBOARD CARDS
+   ========================================= */
 
 .cards {
     display: grid;
@@ -65,21 +95,27 @@ body {
 }
 
 .card {
-    background: white;
+    background-color: #ffffff;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
 }
 
 .card h3 {
-    color: rgb(48,47,81);
+    color: rgb(48,47,81);   /* Theme Color */
 }
+
 /* =========================================
    EDIT PROFILE FORM STYLING
    ========================================= */
 
 .profile-form {
-    background: #ffffff;
+    background-color: #ffffff;
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.08);
@@ -88,25 +124,28 @@ body {
 }
 
 /* Form Labels */
+
 .profile-form label {
     display: block;
     margin-bottom: 6px;
     font-weight: bold;
-    color: rgb(48,47,81);
+    color: rgb(48,47,81);   /* Theme Color */
 }
 
 /* Form Inputs */
+
 .profile-form input {
     width: 100%;
     padding: 10px;
     margin-bottom: 18px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     border-radius: 6px;
     font-size: 14px;
     transition: 0.3s;
 }
 
 /* Input Focus Effect */
+
 .profile-form input:focus {
     border-color: rgb(48,47,81);
     outline: none;
@@ -114,8 +153,9 @@ body {
 }
 
 /* Save Button */
+
 .btn-save {
-    background-color: rgb(48,47,81);
+    background-color: rgb(48,47,81);   /* Theme Color */
     color: #ffffff;
     padding: 12px 20px;
     border: none;
@@ -126,6 +166,7 @@ body {
 }
 
 /* Button Hover */
+
 .btn-save:hover {
     background-color: #ffffff;
     color: rgb(48,47,81);
