@@ -1,7 +1,6 @@
 <?php
-$conn = mysqli_connect("localhost","root","","planify");
+$conn = mysqli_connect("localhost", "root", "", "planify_db");
 
-if(!$conn){
-    die("Connection Failed".mysqli_connect_error());
+if (!$conn) {
+    die("Connection Failed" . mysqli_connect_error());
 }
-?>
