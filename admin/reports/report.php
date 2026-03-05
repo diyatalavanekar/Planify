@@ -47,12 +47,6 @@ session_start();
                     <a href="food_report.php" class="btn">View Report</a>
                 </div>
 
-                <div class="card">
-                    <h3>Contact Report</h3>
-                    <p>View contact enquiries.</p>
-                    <a href="contact_report.php" class="btn">View Report</a>
-                </div>
-
             </div>
 
         </div>
