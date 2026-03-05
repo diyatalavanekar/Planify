@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2026 at 04:48 PM
+-- Generation Time: Mar 05, 2026 at 05:52 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -71,8 +71,7 @@ CREATE TABLE `bookings` (
 --
 
 INSERT INTO `bookings` (`id`, `user_id`, `event_id`, `package_name`, `package_price`, `guests`, `veg_qty`, `nonveg_qty`, `event_date`, `total_amount`, `advance_amount`, `remaining_amount`, `status`, `booking_date`) VALUES
-(1, 1, 1, 'Basic Package', 200000.00, 1000, 200, 800, NULL, 660000.00, 132000.00, 528000.00, 'Cancelled', '2026-02-27 15:14:00'),
-(2, 1, 1, 'Basic Package', 200000.00, 500, 200, 300, NULL, 665000.00, 133000.00, 532000.00, 'Cancelled', '2026-03-03 12:14:48');
+(5, 1, 3, 'Basic Package', 30000.00, 200, 50, 150, '2026-03-28', 168500.00, 33700.00, 134800.00, 'Confirmed', '2026-03-04 16:30:11');
 
 -- --------------------------------------------------------
 
@@ -93,21 +92,18 @@ CREATE TABLE `booking_food_items` (
 --
 
 INSERT INTO `booking_food_items` (`id`, `booking_id`, `food_item_id`, `type`, `price`) VALUES
-(1, 2, 3, 'Veg', 20.00),
-(2, 2, 6, 'Veg', 50.00),
-(3, 2, 7, 'Veg', 60.00),
-(4, 2, 8, 'Veg', 110.00),
-(5, 2, 9, 'Veg', 120.00),
-(6, 2, 11, 'Veg', 120.00),
-(7, 2, 12, 'Veg', 200.00),
-(8, 2, 13, 'Veg', 100.00),
-(9, 2, 15, 'Veg', 120.00),
-(10, 2, 4, 'NonVeg', 150.00),
-(11, 2, 17, 'NonVeg', 180.00),
-(12, 2, 19, 'NonVeg', 300.00),
-(13, 2, 21, 'NonVeg', 70.00),
-(14, 2, 24, 'NonVeg', 70.00),
-(15, 2, 25, 'NonVeg', 180.00);
+(31, 5, 2, 'Veg', 25.00),
+(32, 5, 3, 'Veg', 20.00),
+(33, 5, 7, 'Veg', 60.00),
+(34, 5, 9, 'Veg', 120.00),
+(35, 5, 13, 'Veg', 100.00),
+(36, 5, 15, 'Veg', 30.00),
+(37, 5, 4, 'NonVeg', 150.00),
+(38, 5, 19, 'NonVeg', 300.00),
+(39, 5, 20, 'NonVeg', 250.00),
+(40, 5, 23, 'NonVeg', 60.00),
+(41, 5, 26, 'NonVeg', 25.00),
+(42, 5, 27, 'NonVeg', 20.00);
 
 -- --------------------------------------------------------
 
@@ -264,7 +260,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `phone`, `password`, `created_at`) VALUES
-(1, 'diyat', 'diyatalavanekar@gmail.com', '7684934958', '12345678', '2026-02-14 15:00:46'),
+(1, 'diyat', 'diyatalavanekar@gmail.com', '7684934958', '123456789', '2026-02-14 15:00:46'),
 (3, 'shrutit', 'shrutithombare@gmail.com', '2345656789', '1234567', '2026-03-03 09:23:49');
 
 --
@@ -344,13 +340,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `booking_food_items`
 --
 ALTER TABLE `booking_food_items`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `contact_info`
