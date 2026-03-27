@@ -91,8 +91,8 @@ $result = mysqli_query($conn, $query);
                     <th>ID</th>
                     <th>User</th>
                     <th>Event</th>
-                    <th>Date</th>
                     <th>Package</th>
+                    <th>Food Plates</th>
                     <th>Total</th>
                     <th>Status</th>
                     <th>Action</th>

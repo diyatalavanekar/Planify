@@ -19,7 +19,7 @@ if (!isset($_SESSION['user_id'])) {
 // CHECK POST REQUEST
 // ===============================
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    header("Location: events.php");
+    header("Location: booking_success.php?id=" . $booking_id);
     exit();
 }
 

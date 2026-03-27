@@ -128,6 +128,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="booking-container">
         <form method="POST" class="booking-form">
 
+            <input type="hidden" name="event_id" value="<?php echo $event_id; ?>">
             <!-- PACKAGE -->
             <label>Select Package</label>
             <select id="package_select" name="package_select" required>

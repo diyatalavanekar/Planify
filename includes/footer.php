@@ -16,7 +16,6 @@
             <h4>Quick Links</h4>
             <ul>
                 <li><a href="/planify/contact.php">Contact Us</a></li>
-                <li><a href="/planify/ratings.php">Feedback</a></li>
                 <li><a href="/planify/about.php">About Us</a></li>
             </ul>
         </div>
@@ -24,8 +23,8 @@
         <!-- Contact -->
         <div class="footer-section">
             <h4>Contact</h4>
-            <p>Email: diyashital@gmail.com</p>
-            <p>Phone: +91 7756053060</p>
+            <p>Email: rasika@gmail.com</p>
+            <p>Phone: +91 9876543210</p>
         </div>
 
     </div>
