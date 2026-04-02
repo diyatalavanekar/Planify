@@ -2,9 +2,9 @@
 require_once("db.php");
 
 /* ==============================
-   FETCH USERS
+   FETCH PACKAGES
 ============================== */
-$query = "SELECT * FROM users ORDER BY created_at DESC";
+$query = "SELECT * FROM package ORDER BY created_at DESC";
 $result = mysqli_query($conn, $query);
 
 /* ==============================
@@ -40,7 +40,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 <html>
 
 <head>
-    <title>User Report</title>
+    <title>Package Report</title>
     <link rel="stylesheet" href="../admin.css">
 
     <style>
@@ -61,13 +61,13 @@ while ($row = mysqli_fetch_assoc($result)) {
 
 <div class="main-content">
 
-    <h2>User Report</h2>
+    <h2>Package Report</h2>
 
     <?php
     /* ==============================
        DISPLAY FUNCTION
     ============================== */
-    function displayUsers($data) {
+    function displayPackages($data) {
         if (count($data) == 0) {
             echo "<p>No Records Found</p>";
             return;
@@ -76,18 +76,18 @@ while ($row = mysqli_fetch_assoc($result)) {
         echo "<table>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Account Created</th>
+                    <th>Package Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Created On</th>
                 </tr>";
 
         foreach ($data as $row) {
             echo "<tr>
                     <td>{$row['id']}</td>
-                    <td>{$row['username']}</td>
-                    <td>{$row['email']}</td>
-                    <td>{$row['phone']}</td>
+                    <td>{$row['package_name']}</td>
+                    <td>{$row['description']}</td>
+                    <td>₹{$row['price']}</td>
                     <td>".date("d-m-Y", strtotime($row['created_at']))."</td>
                   </tr>";
         }
@@ -97,16 +97,16 @@ while ($row = mysqli_fetch_assoc($result)) {
     ?>
 
     <!-- TODAY -->
-    <h3>Today's Users</h3>
-    <?php displayUsers($today_data); ?>
+    <h3>Today's Packages</h3>
+    <?php displayPackages($today_data); ?>
 
     <!-- YESTERDAY -->
-    <h3>Yesterday's Users</h3>
-    <?php displayUsers($yesterday_data); ?>
+    <h3>Yesterday's Packages</h3>
+    <?php displayPackages($yesterday_data); ?>
 
     <!-- HISTORY -->
-    <h3>Previous Users</h3>
-    <?php displayUsers($old_data); ?>
+    <h3>Previous Packages</h3>
+    <?php displayPackages($old_data); ?>
 
 </div>
 
